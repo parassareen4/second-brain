@@ -14,4 +14,4 @@ To install **Second Brain** on your local machine, follow these steps:
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/yourusername/second-brain.git
+   git clone https://github.com/akshitvigg/second-brain.git
