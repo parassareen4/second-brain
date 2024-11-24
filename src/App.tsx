@@ -1,10 +1,17 @@
+import { useState } from "react";
 import "./App.css";
-import { SideBar } from "./sidebar";
+import { CreateContentModal } from "./components/CreateContentModal";
+import { SideBar } from "./components/sidebar";
 
 function App() {
+  const [modalOpen, setModalOpen] = useState(false);
   return (
     <>
-      <SideBar />
+      <CreateContentModal
+        onClose={() => setModalOpen(false)}
+        open={modalOpen}
+      />
+      <SideBar setModalOpen={setModalOpen} />
     </>
   );
 }

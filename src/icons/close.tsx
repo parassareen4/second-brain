@@ -1,6 +1,6 @@
 import { Sizeprops, sizeStyles } from "./iconStyles";
 
-export const Plus = (props: Sizeprops) => {
+export const Close = (props: Sizeprops) => {
   return (
     <>
       <svg
@@ -9,12 +9,14 @@ export const Plus = (props: Sizeprops) => {
         viewBox="0 0 24 24"
         strokeWidth="1.5"
         stroke="currentColor"
-        className={sizeStyles.get(props.size)}
+        className={`${sizeStyles.get(
+          props.size
+        )} hover:text-white rounded-full hover:cursor-pointer hover:bg-red-500`}
       >
         <path
           strokeLinecap="round"
           strokeLinejoin="round"
-          d="M12 4.5v15m7.5-7.5h-15"
+          d="m9.75 9.75 4.5 4.5m0-4.5-4.5 4.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
         />
       </svg>
     </>

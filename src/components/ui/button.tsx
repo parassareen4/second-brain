@@ -4,7 +4,7 @@ interface ButtonProps {
   variant: "primary" | "secondary";
   size: "sm" | "md" | "lg";
   text: string;
-  startIcons: ReactElement;
+  startIcons?: ReactElement;
   endIcon?: any;
   onClick?: () => void;
 }
@@ -31,9 +31,10 @@ export const Button = (props: ButtonProps) => {
   return (
     <>
       <button
+        onClick={props.onClick}
         className={`${variantStyle.get(props.variant)} ${sizeStyles.get(
           props.size
-        )}`}
+        )} transition-all duration-300 ease-in-out active:scale-95 `}
       >
         <div className="flex items-center">
           {props.startIcons}
