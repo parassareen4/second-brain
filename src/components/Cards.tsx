@@ -38,14 +38,14 @@ export const Card = (props: CardProps) => {
       );
     }
 
-    // Handle YouTube embedding
+    
     if (
       adjustedLink.includes("youtube.com") ||
       adjustedLink.includes("youtu.be")
     ) {
       const videoId = adjustedLink.includes("youtube.com")
-        ? new URL(adjustedLink).searchParams.get("v") // Extract video ID from YouTube link
-        : adjustedLink.split("/").pop(); // Extract video ID from youtu.be link
+        ? new URL(adjustedLink).searchParams.get("v") 
+        : adjustedLink.split("/").pop();
 
       if (videoId) {
         return (
