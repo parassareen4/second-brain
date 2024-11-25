@@ -1,16 +1,19 @@
 interface inputProps {
   placeholder: string;
-  onChange?: () => void;
+  reference?: any;
+  width?: string;
 }
 
-export const InputComp = ({ placeholder, onChange }: inputProps) => {
+export const InputComp = ({ placeholder, reference, width }: inputProps) => {
   return (
     <div className="mt-4 ">
       <input
-        className=" outline-1 px-10 py-2 border-slate-400 border rounded-md"
+        className={` outline-none px-10 py-2 border-slate-400 border rounded-md ${
+          width && "w-96"
+        } `}
         type="text"
         placeholder={placeholder}
-        onChange={onChange}
+        ref={reference}
       />
     </div>
   );

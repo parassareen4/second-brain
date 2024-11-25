@@ -21,10 +21,12 @@ export default {
           "sans-serif",
         ],
       },
-      // boxShadow: {
-      //   custom: "0px 0px 5px rgba(0, 0, 0, 0.3)",
-      //   inverted: "-5px -10px 15px rgba(0,0,0,0,3) ",
-      // },
+      height: {
+        "custom-h": "460px",
+      },
+      width: {
+        "custom-h": "460px",
+      },
     },
   },
   plugins: [],

@@ -4,14 +4,15 @@ import { Share } from "../icons/share";
 import logo from "../assets/brain.png";
 import { MainLogo } from "./logo";
 import { Card } from "./Cards";
-import { TwitterIcon } from "../icons/twittericon";
 import { SideItems } from "./sideItems";
+import { useContent } from "../hooks/useContent";
 
 export const SideBar = ({
   setModalOpen,
 }: {
   setModalOpen: (state: boolean) => void;
 }) => {
+  const { content } = useContent();
   return (
     <div className="flex">
       <div className=" transition-all duration-500 bg-white border border-gray-300  shadow-lg  sm:w-80 min-h-screen w-0">
@@ -32,13 +33,15 @@ export const SideBar = ({
           <p className="flex items-center font-apple font-bold ml-10 text-2xl">
             All Notes
           </p>
-          <div className=" mr-6">
-            <Button
-              variant="secondary"
-              text="Share Brains"
-              size="md"
-              startIcons={<Share size="lg" />}
-            />
+          <div className=" flex mr-6">
+            <div className="mr-4">
+              <Button
+                variant="secondary"
+                text="Share Brains"
+                size="md"
+                startIcons={<Share size="lg" />}
+              />
+            </div>
             <Button
               onClick={() => setModalOpen(true)}
               variant="primary"
@@ -49,31 +52,9 @@ export const SideBar = ({
           </div>
         </div>
         <div className="mt-6 gap-5 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 px-4">
-          <Card
-            title="twitter post"
-            type="twitter"
-            link="https://x.com/elonmusk/status/1860477824571724207"
-          />
-          <Card
-            title="youtube post"
-            type="youtube"
-            link="https://www.youtube.com/watch?v=FXsGCieXm1E"
-          />
-          <Card
-            title="twitter post"
-            type="twitter"
-            link="https://x.com/AkshitVig4/status/1860419204836655179"
-          />
-          <Card
-            title="twitter post"
-            type="twitter"
-            link="https://x.com/AkshitVig4/status/1860419204836655179"
-          />
-          <Card
-            title="twitter post"
-            type="twitter"
-            link="https://x.com/kirat_tw/status/1633685473821425666"
-          />
+          {content.map(({ type, link, title }) => (
+            <Card title={title} type={type} link={link} />
+          ))}
         </div>
       </div>
     </div>

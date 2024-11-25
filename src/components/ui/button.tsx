@@ -6,6 +6,9 @@ interface ButtonProps {
   text: string;
   startIcons?: ReactElement;
   endIcon?: any;
+  width?: string;
+  center?: boolean;
+  modalwidth?: string;
   onClick?: () => void;
 }
 type Variants = "primary" | "secondary";
@@ -13,11 +16,11 @@ type Variants = "primary" | "secondary";
 const variantStyle = new Map<Variants, string>();
 variantStyle.set(
   "primary",
-  "bg-purple-600 font-apple text-white hover:text-purple-600 hover:bg-purple-300 "
+  "bg-purple-600 hover:bg-purple-500 font-apple text-white active:bg-purple-500 "
 );
 variantStyle.set(
   "secondary",
-  "font-apple hover:bg-purple-600 hover:text-white bg-purple-300 mr-4 text-purple-600"
+  " font-apple bg-purple-300 text-purple-600 hover:bg-purple-500 hover:text-white active:bg-purple-600 "
 );
 
 type Sizes = "sm" | "md" | "lg";
@@ -34,9 +37,17 @@ export const Button = (props: ButtonProps) => {
         onClick={props.onClick}
         className={`${variantStyle.get(props.variant)} ${sizeStyles.get(
           props.size
-        )} transition-all duration-300 ease-in-out active:scale-95 `}
+        )} transition-all duration-300 ease-in-out active:scale-95 ${
+          props.width && "w-72"
+        } ${props.modalwidth && "w-96"} `}
       >
-        <div className="flex items-center">
+        <div
+          className={
+            props.center
+              ? "flex items-center justify-center"
+              : "flex items-center"
+          }
+        >
           {props.startIcons}
           <div className="pl-2">{props.text}</div>
         </div>
