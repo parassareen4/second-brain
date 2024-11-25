@@ -38,20 +38,12 @@ export const Card = (props: CardProps) => {
       );
     }
 
-<<<<<<< HEAD
-    
-=======
->>>>>>> 5524bba (almost done)
     if (
       adjustedLink.includes("youtube.com") ||
       adjustedLink.includes("youtu.be")
     ) {
       const videoId = adjustedLink.includes("youtube.com")
-<<<<<<< HEAD
-        ? new URL(adjustedLink).searchParams.get("v") 
-=======
         ? new URL(adjustedLink).searchParams.get("v")
->>>>>>> 5524bba (almost done)
         : adjustedLink.split("/").pop();
 
       if (videoId) {
