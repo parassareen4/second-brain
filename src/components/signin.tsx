@@ -13,7 +13,7 @@ export const SignIn = () => {
     const username = usernameRef.current?.value;
     const password = passwordRef.current?.value;
     const response: any = await axios.post(
-      "http://localhost:3002/api/v1/signin",
+      "https://second-brain-backend-1-fbmf.onrender.com/api/v1/signin",
       {
         username,
         password,
