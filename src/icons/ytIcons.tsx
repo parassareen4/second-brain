@@ -1,4 +1,6 @@
-export const YTIcon = () => {
+import { iconsProps, sizeStylesIcons } from "./iconStyles";
+
+export const YTIcon = (props: iconsProps) => {
   return (
     <>
       <div>
@@ -6,8 +8,8 @@ export const YTIcon = () => {
           xmlns="http://www.w3.org/2000/svg"
           x="0px"
           y="0px"
-          width="25"
-          height="25"
+          width={sizeStylesIcons.get(props.size)}
+          height={sizeStylesIcons.get(props.size)}
           viewBox="0,0,256,256"
         >
           <g

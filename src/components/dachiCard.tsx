@@ -22,7 +22,7 @@ enum ContentType {
   Medium = "medium",
   Instagram = "instagram",
 }
-export const Card = (props: CardProps) => {
+export const DachiCard = (props: CardProps) => {
   const currentDate = new Date();
   const formattedDate = format(new Date(currentDate), "dd/MM/yy");
 

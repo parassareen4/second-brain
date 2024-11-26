@@ -10,30 +10,36 @@ enum ContentType {
   Image = "image",
   Audio = "audio",
   Medium = "medium",
+  Instagram = "instagram",
 }
 
 export const CreateContentModal = ({ open, onClose }: any) => {
-  const titleRef = useRef<HTMLInputElement>();
-  const linkRef = useRef<HTMLInputElement>();
+  const titleRef = useRef<HTMLInputElement>(null);
+  const linkRef = useRef<HTMLInputElement>(null);
   const [type, setType] = useState(ContentType.Youtube);
+  const [content, setContent] = useState<any[]>([]);
 
   async function addcontent() {
     const title = titleRef.current?.value;
     const link = linkRef.current?.value;
 
-    await axios.post(
-      "http://localhost:3002/api/v1/content",
-      {
-        title,
-        link,
-        type,
-      },
-      {
+    try {
+      const newContent = { title, link, type };
+
+      setContent([...content, newContent]);
+
+      await axios.post("http://localhost:3002/api/v1/content", newContent, {
         headers: {
           Authorization: localStorage.getItem("token"),
         },
-      }
-    );
+      });
+
+      if (titleRef.current) titleRef.current.value = "";
+      if (linkRef.current) linkRef.current.value = "";
+    } catch (error) {
+      console.error("Error adding content:", error);
+      alert("There was an error adding the content. Please try again.");
+    }
   }
 
   return (
@@ -113,6 +119,18 @@ export const CreateContentModal = ({ open, onClose }: any) => {
                   }}
                 />
               </div>
+            </div>
+            <div className=" flex justify-center pt-4">
+              <Button
+                size="sm"
+                text="instagram"
+                variant={
+                  type === ContentType.Instagram ? "primary" : "secondary"
+                }
+                onClick={() => {
+                  setType(ContentType.Instagram);
+                }}
+              />
             </div>
             <div className="flex justify-center pt-16">
               <Button

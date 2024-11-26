@@ -1,22 +1,31 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "./ui/button";
 import { Plus } from "../icons/plus";
 import { Share } from "../icons/share";
 import logo from "../assets/brain.png";
 import { MainLogo } from "./logo";
-import { Card } from "./Cards";
 import { SideItems } from "./sideItems";
-import { useContent } from "../hooks/useContent";
+import { DachiCard } from "./dachiCard";
 
-export const SideBar = ({
-  setModalOpen,
-  setshareModalOpen,
-}: {
-  setModalOpen: (state: boolean) => void;
-  setshareModalOpen: (state: boolean) => void;
-}) => {
-  const { content } = useContent();
+export const DachiSideBar = ({ sharedLink }: any) => {
+  const [content, setContent] = useState<any[]>([]);
   const [selectedContent, setSelectedContent] = useState<string | null>(null);
+
+  useEffect(() => {
+    const fetchContent = async () => {
+      try {
+        const response = await fetch(
+          `http://localhost:3002/api/v1/${sharedLink}`
+        );
+        const data = await response.json();
+        setContent(data);
+      } catch (error) {
+        console.error("Error fetching content:", error);
+      }
+    };
+
+    fetchContent();
+  }, [sharedLink]);
 
   const handleContentSelection = (contentType: string | null) => {
     setSelectedContent(contentType);
@@ -46,7 +55,6 @@ export const SideBar = ({
           <div className="flex mr-6">
             <div className="mr-4">
               <Button
-                onClick={() => setshareModalOpen(true)}
                 variant="secondary"
                 text="Share Brains"
                 size="md"
@@ -54,7 +62,6 @@ export const SideBar = ({
               />
             </div>
             <Button
-              onClick={() => setModalOpen(true)}
               variant="primary"
               text="Add Contents"
               size="md"
@@ -68,8 +75,13 @@ export const SideBar = ({
             .filter(
               ({ type }) => selectedContent === null || type === selectedContent
             )
-            .map(({ type, link, title }) => (
-              <Card key={link} title={title} type={type} link={link} />
+            .map((item) => (
+              <DachiCard
+                key={item._id}
+                title={item.title}
+                type={item.type}
+                link={item.link}
+              />
             ))}
         </div>
       </div>
