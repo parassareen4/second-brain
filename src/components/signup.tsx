@@ -12,7 +12,7 @@ export const Signup = () => {
   async function signup() {
     const username = usernameRef.current?.value;
     const password = passwordRef.current?.value;
-    await axios.post("http://localhost:3002/api/v1/signup", {
+    await axios.post("https://second-brain-backend-1-fbmf.onrender.com/api/v1/signup", {
       username,
       password,
     });
