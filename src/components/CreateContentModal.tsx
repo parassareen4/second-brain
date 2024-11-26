@@ -28,7 +28,7 @@ export const CreateContentModal = ({ open, onClose }: any) => {
 
       setContent([...content, newContent]);
 
-      await axios.post("http://localhost:3002/api/v1/content", newContent, {
+      await axios.post("https://second-brain-backend-1-fbmf.onrender.com/api/v1/content", newContent, {
         headers: {
           Authorization: localStorage.getItem("token"),
         },
