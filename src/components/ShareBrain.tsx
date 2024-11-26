@@ -38,7 +38,7 @@ export const ShareBrain = ({ open, onClose }: any) => {
 
   const disableShareLink = async () => {
     try {
-      const response = await axios.post(
+      await axios.post(
         "http://localhost:3002/api/v1/share",
         { share: false },
         {
